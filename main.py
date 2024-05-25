@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from functions import onEnter, onLeave
 from student_login import StudentLogin
+from teacher_login import TeacherLogin
 
 ctk.set_appearance_mode("dark") #options: "light", "dark", "system"
 ctk.set_default_color_theme("blue")  # Options: "blue", "green", "dark-blue"
@@ -42,6 +43,7 @@ class App(ctk.CTk):
             width=250,  # Adjust width to fit the text
             height=100,  # Adjust height to fit the text
             # fg_color="black",
+            command=self.openTeacherLogin,
             border_width=2,
             border_color="black",
         )
@@ -105,6 +107,10 @@ class App(ctk.CTk):
     def openStudentLogin(self):
         self.main_frame.destroy()
         StudentLogin(self, ctk, buttonFont = self.button_font)
+
+    def openTeacherLogin(self):
+        self.main_frame.destroy()
+        TeacherLogin(self, ctk, buttonFont = self.button_font)
         
 
 
