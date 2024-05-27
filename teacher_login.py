@@ -1,3 +1,5 @@
+from functions import showCopyrightClaim
+
 class TeacherLogin:
     def __init__(self, master, ctk, buttonFont):
         self.ctk = ctk
@@ -7,6 +9,9 @@ class TeacherLogin:
         # Create login frame
         self.login_frame = self.ctk.CTkFrame(self.master, width=800, height=500, border_width=2, border_color="white")
         self.login_frame.place(relx=0.5, rely=0.5, anchor="center")
+
+        # copyright claim 
+        showCopyrightClaim(self.ctk, self.login_frame)
 
         # label header
         self.header_label = self.ctk.CTkLabel(
@@ -42,7 +47,7 @@ class TeacherLogin:
             font=self.button_font,
             width=150,
             height=35,
-            # fg_color="red",  # Ensure visible color
+            fg_color="red",  # Ensure visible color
             command=self.back_to_main
         )
         self.back_button.place(relx=0.3, rely=0.6)
@@ -59,6 +64,7 @@ class TeacherLogin:
             # command=self.back_to_main
         )
         self.login_button.place(relx=0.6, rely=0.6)
+
 
     def back_to_main(self):
         self.login_frame.destroy()

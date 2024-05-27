@@ -1,26 +1,28 @@
 from functions import showCopyrightClaim
 
-class StudentLogin:
+class AdminLogin:
     def __init__(self, master, ctk, buttonFont):
         self.ctk = ctk
         self.master = master
         self.button_font = buttonFont
 
-        # Create login frame
+        # create login frame
         self.login_frame = self.ctk.CTkFrame(self.master, width=800, height=500, border_width=2, border_color="white")
         self.login_frame.place(relx=0.5, rely=0.5, anchor="center")
 
         # copyright claim 
         showCopyrightClaim(self.ctk, self.login_frame)
 
+
         # label header
         self.header_label = self.ctk.CTkLabel(
             self.login_frame,
-            text = "Welcome to Our School\nLogin as a Student",
+            text = "Welcome to Our School\nLogin as a Admin",
             font=('Arial', 50, 'bold'),
             text_color = "white",
         )
         self.header_label.place(relx=0.5, rely=0, anchor="n", y=10)
+
 
         # Label ID
         self.id_label = self.ctk.CTkLabel(
@@ -31,6 +33,7 @@ class StudentLogin:
         )
         self.id_label.place(relx=0.3, rely=0.4)
 
+
         # id Entry
         self.id_entry = self.ctk.CTkEntry(
             self.login_frame,
@@ -38,6 +41,7 @@ class StudentLogin:
             font=self.button_font
         )
         self.id_entry.place(relx=0.4, rely=0.4)
+
 
         # Back button
         self.back_button = self.ctk.CTkButton(
@@ -52,6 +56,7 @@ class StudentLogin:
         )
         self.back_button.place(relx=0.3, rely=0.6)
 
+
         # login button
         self.login_button = self.ctk.CTkButton(
             self.login_frame,
@@ -65,15 +70,6 @@ class StudentLogin:
         )
         self.login_button.place(relx=0.6, rely=0.6)
 
-        # copyright
-        # self.copyright_claim = self.ctk.CTkLabel(
-        #     self.login_frame,
-        #     text="© 2024 All rights reserved. Software developed by Sadab.",
-        #     text_color="white",
-        #     font=("Arial", 12, "italic"),
-        #     justify="right"
-        # )
-        # self.copyright_claim.place(relx=0.95, rely=0.95, anchor="se")
 
     def back_to_main(self):
         self.login_frame.destroy()
