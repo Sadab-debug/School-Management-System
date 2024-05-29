@@ -1,4 +1,5 @@
-from functions import showCopyrightClaim
+from functions import showCopyrightClaim, showErrorMessage, showInfo
+from json import load
 
 class AdminLogin:
     def __init__(self, master, ctk, buttonFont):
@@ -37,6 +38,7 @@ class AdminLogin:
         # id Entry
         self.id_entry = self.ctk.CTkEntry(
             self.login_frame,
+            placeholder_text = "Enter ID No.",
             width=250,
             font=self.button_font
         )
@@ -52,7 +54,7 @@ class AdminLogin:
             width=150,
             height=35,
             fg_color="red",  # Ensure visible color
-            command=self.back_to_main
+            command=self.backToMain
         )
         self.back_button.place(relx=0.3, rely=0.6)
 
@@ -63,6 +65,7 @@ class AdminLogin:
             text="Login",
             text_color="white",
             font=self.button_font,
+            command = self.authenticateAdminLogin,
             width=150,
             height=35,
             # fg_color="red",  # Ensure visible color
@@ -71,6 +74,21 @@ class AdminLogin:
         self.login_button.place(relx=0.6, rely=0.6)
 
 
-    def back_to_main(self):
+    def backToMain(self):
         self.login_frame.destroy()
         self.master.create_main_frame()
+
+    def authenticateAdminLogin(self):
+        data_file = 'admin_id.json'
+        id_no = self.id_entry.get()
+
+        try:
+            with open(data_file) as f:
+                data = load(f)
+                if id_no != data.get("admin_id"):
+                    showErrorMessage(message="Login status: failed!.\nFatal error: unknown!\nId number incorrect!")
+                else:
+                    showInfo("Logged in successfully!")
+        except FileNotFoundError:
+            showErrorMessage(message="File doesn't exist")
+

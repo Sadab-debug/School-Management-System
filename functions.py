@@ -1,5 +1,4 @@
-from typing import Callable
-
+import tkinter.messagebox as messagebox
 
 #border effect on hover
 def onEnter(event, var):
@@ -19,3 +18,9 @@ def showCopyrightClaim(ctk, frame_name):
         justify="right"
     )
     copyright_claim.place(relx=0.95, rely=0.95, anchor="se")
+
+def showErrorMessage(message):
+    messagebox.showerror("Error!", message)
+
+def showInfo(message):
+    messagebox.showinfo("Info", message)
