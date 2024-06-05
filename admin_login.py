@@ -1,5 +1,6 @@
 from functions import showCopyrightClaim, showErrorMessage, showInfo
 from json import load
+from admin_account import AdminAccount
 
 class AdminLogin:
     def __init__(self, master, ctk, buttonFont):
@@ -78,6 +79,10 @@ class AdminLogin:
         self.login_frame.destroy()
         self.master.create_main_frame()
 
+    def openAdminAccount(self):
+        self.login_frame.destroy()
+        AdminAccount(self.master, self.ctk)
+
     def authenticateAdminLogin(self):
         data_file = 'admin_id.json'
         id_no = self.id_entry.get()
@@ -89,6 +94,7 @@ class AdminLogin:
                     showErrorMessage(message="Login status: failed!.\nFatal error: unknown!\nId number incorrect!")
                 else:
                     showInfo("Logged in successfully!")
+                    self.openAdminAccount()
         except FileNotFoundError:
             showErrorMessage(message="File doesn't exist")
 
