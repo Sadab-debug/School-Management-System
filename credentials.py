@@ -10,6 +10,7 @@ class Credentials:
         self.credential_frame = self.ctk.CTkFrame(self.master, width=1000, height=600, border_width=2, border_color="white")
         self.credential_frame.place(relx=0.5, rely=0.5, anchor="center")
 
+
         # copyright claim 
         showCopyrightClaim(self.ctk, self.credential_frame)
         

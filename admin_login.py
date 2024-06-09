@@ -81,7 +81,7 @@ class AdminLogin:
 
     def openAdminAccount(self):
         self.login_frame.destroy()
-        AdminAccount(self.master, self.ctk)
+        AdminAccount(self.master, self.ctk, self.button_font)
 
     def authenticateAdminLogin(self):
         data_file = 'admin_id.json'
