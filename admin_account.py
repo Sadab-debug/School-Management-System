@@ -1,7 +1,7 @@
 from functions import uploadImage, showCopyrightClaim
 from PIL import Image, ImageTk
 import json
-from tkinter import messagebox
+from tkinter import messagebox, Toplevel
 
 
 class AdminAccount:
@@ -69,9 +69,11 @@ class AdminAccount:
         self.showExistingClasses()
 
 
+
     def back_to_main(self):
         self.main_frame.destroy()
         self.master.create_main_frame()
+
 
 
     def loadProfileImage(self):
@@ -88,30 +90,33 @@ class AdminAccount:
             print("admin_id.json not found or corrupted")
 
 
+
     def showExistingClasses(self):
         try:
             with open('classes.json', 'r') as f:
                 data = json.load(f)
-                # Ensure we are dealing with a list of classes
-                class_list = data.get("class", [])
-                for class_name in class_list:
-                    self.addClassButton(class_name)
+                class_list = data.get("classes", [])
+                for class_data in class_list:
+                    self.addClassButton(class_data["class"])
         except FileNotFoundError:
             print("classes.json not found.")
         except json.JSONDecodeError:
             print("Error decoding JSON from classes.json.")
 
 
+
     def addClassButton(self, class_name):
         self.classes = self.ctk.CTkButton(
             self.main_frame,
-            text=class_name,
+            text=f"Class {class_name}",
             text_color="white",
             font=self.button_font,
             width=700,
             height=100,
+            command=lambda c=class_name: self.openClass(c)
         )
         self.classes.pack(padx=10, pady=10)
+
 
 
     def createClass(self):
@@ -155,33 +160,132 @@ class AdminAccount:
 
         self.window.mainloop()
 
+        
 
     def saveClass(self):
         class_name = self.class_entry.get()
         if class_name:
-            # Read the existing data from the JSON file
             try:
                 with open('classes.json', 'r') as f:
                     data = json.load(f)
             except FileNotFoundError:
-                data = {"class": []}
+                data = {"classes": []}
             
-            if class_name not in data["class"]:
-                # Append the new class name to the list
-                data["class"].append(class_name)
+            class_exists = any(cls["class"] == class_name for cls in data["classes"])
+
+            if not class_exists:
+                new_class = {
+                    "class": class_name,
+                    "students": []
+                }
+                data["classes"].append(new_class)
                 
-                # Write the updated data back to the JSON file
                 with open('classes.json', 'w') as f:
                     json.dump(data, f, indent=4)
 
-                # Update the UI
-                self.add_class_button(class_name)
-
-
-                # Close the class creation window
+                self.addClassButton(class_name)
                 self.window.destroy()
 
             else:
                 messagebox.showerror("Error", "Class already exists")
 
-    
+
+    def openClass(self, c):
+        self.width = 1200
+        self.height = 720
+
+        self.window = self.ctk.CTk()
+        self.window.resizable(False, False)
+        self.window.geometry(f"{self.width}x{self.height}")
+        self.window.title(f"Class : {c}")
+
+        self.main_frame = self.ctk.CTkScrollableFrame(
+            self.window,
+            width=1000,
+            height=600,
+            border_width=2,
+            border_color="white",
+            orientation='vertical'
+
+        )
+        self.main_frame.place(relx=0.5, rely=0.5, anchor='center')
+
+        self.window.mainloop()
+
+    def createStudent(self, class_name):
+        self.student_window = Toplevel(self.master)
+        self.student_window.title(f"Class {class_name}")
+
+        self.student_name_label = self.ctk.CTkLabel(self.student_window, text="Student Name", text_color='black')
+        self.student_name_label.grid(row=0, column=0)
+        self.student_name_entry = self.ctk.CTkEntry(self.student_window)
+        self.student_name_entry.grid(row=0, column=1)
+
+        self.student_id_label = self.ctk.CTkLabel(self.student_window, text="Student ID", text_color='black')
+        self.student_id_label.grid(row=1, column=0)
+        self.student_id_entry = self.ctk.CTkEntry(self.student_window)
+        self.student_id_entry.grid(row=1, column=1)
+
+        self.student_roll_label = self.ctk.CTkLabel(self.student_window, text="Roll Number", text_color='black')
+        self.student_roll_label.grid(row=2, column=0)
+        self.student_roll_entry = self.ctk.CTkEntry(self.student_window)
+        self.student_roll_entry.grid(row=2, column=1)
+
+        self.student_age_label = self.ctk.CTkLabel(self.student_window, text="Age", text_color='black')
+        self.student_age_label.grid(row=3, column=0)
+        self.student_age_entry = self.ctk.CTkEntry(self.student_window)
+        self.student_age_entry.grid(row=3, column=1)
+
+        self.student_address_label = self.ctk.CTkLabel(self.student_window, text="Address", text_color='black')
+        self.student_address_label.grid(row=4, column=0)
+        self.student_address_entry = self.ctk.CTkEntry(self.student_window)
+        self.student_address_entry.grid(row=4, column=1)
+
+        self.marks_entries = {}
+        for i in range(1, 11):
+            label = self.ctk.CTkLabel(self.student_window, text=f"Subject{i} Marks", text_color='black')
+            label.grid(row=4+i, column=0)
+            entry = self.ctk.CTkEntry(self.student_window)
+            entry.grid(row=4+i, column=1)
+            self.marks_entries[f"Subject{i}"] = entry
+
+        self.save_student_button = self.ctk.CTkButton(
+            self.student_window,
+            text="Save Student",
+            command=lambda: self.saveStudent(class_name)
+        )
+        self.save_student_button.grid(row=15, column=0, columnspan=2)
+
+    def saveStudent(self, class_name):
+        student_data = {
+            "Name": self.student_name_entry.get(),
+            "ID": self.student_id_entry.get(),
+            "Roll": self.student_roll_entry.get(),
+            "Marks": {subject: int(entry.get()) for subject, entry in self.marks_entries.items()},
+            "OtherInfo": {
+                "Age": int(self.student_age_entry.get()),
+                "Address": self.student_address_entry.get()
+            }
+        }
+
+        try:
+            with open('classes.json', 'r') as f:
+                data = json.load(f)
+
+            for cls in data["classes"]:
+                if cls["class"] == class_name:
+                    cls["students"].append(student_data)
+                    break
+
+            with open('classes.json', 'w') as f:
+                json.dump(data, f, indent=4)
+
+            self.student_window.destroy()
+
+        except FileNotFoundError:
+            messagebox.showerror("Error", "classes.json not found.")
+        except json.JSONDecodeError:
+            messagebox.showerror("Error", "Error decoding JSON from classes.json.")
+
+
+
