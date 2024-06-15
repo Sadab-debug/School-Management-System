@@ -4,66 +4,72 @@
             "class": "1",
             "students": [
                 {
-                    "Name": "Student 1",
-                    "ID": "001",
-                    "Roll": "01",
+                    "Name": "Steve",
+                    "ID": "187456",
+                    "Roll": "1",
                     "Marks": {
-                        "Subject1": 85,
-                        "Subject2": 78,
-                        "Subject3": 90,
-                        "Subject4": 88,
-                        "Subject5": 76,
-                        "Subject6": 92,
-                        "Subject7": 89,
-                        "Subject8": 94,
-                        "Subject9": 81,
-                        "Subject10": 87
+                        "Bangla": 85,
+                        "English": 78,
+                        "Math": 90,
+                        "Science": 88,
+                        "Life and Livelihood": 76,
+                        "Digital Technology": 92,
+                        "History and Social Science": 89,
+                        "Religion": 94,
+                        "Wellbeing": 81,
+                        "Arts and Culture": 87
                     },
                     "OtherInfo": {
                         "Age": 6,
-                        "Address": "123 Main St"
+                        "Address": "123 Main St",
+                        "Phone Number": "01175255848",
+                        "Guardian": "Vegeta"
                     }
                 },
                 {
-                    "Name": "Student 2",
-                    "ID": "002",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 78,
-                        "Subject2": 85,
-                        "Subject3": 82,
-                        "Subject4": 79,
-                        "Subject5": 88,
-                        "Subject6": 91,
-                        "Subject7": 87,
-                        "Subject8": 80,
-                        "Subject9": 85,
-                        "Subject10": 90
-                    },
-                    "OtherInfo": {
-                        "Age": 6,
-                        "Address": "456 Main St"
-                    }
-                },
-                {
-                    "Name": "Sadab",
-                    "ID": "014525",
+                    "Name": "Trunks",
+                    "ID": "124587",
                     "Roll": "2",
                     "Marks": {
-                        "Subject1": 100,
-                        "Subject2": 100,
-                        "Subject3": 100,
-                        "Subject4": 100,
-                        "Subject5": 100,
-                        "Subject6": 100,
-                        "Subject7": 100,
-                        "Subject8": 100,
-                        "Subject9": 100,
-                        "Subject10": 100
+                        "Bangla": 85,
+                        "English": 78,
+                        "Math": 90,
+                        "Science": 88,
+                        "Life and Livelihood": 76,
+                        "Digital Technology": 92,
+                        "History and Social Science": 89,
+                        "Religion": 94,
+                        "Wellbeing": 81,
+                        "Arts and Culture": 87
                     },
                     "OtherInfo": {
-                        "Age": 14,
-                        "Address": "Tennis  Club, Naogaon"
+                        "Age": 6,
+                        "Address": "Planet Vegeta",
+                        "Phone Number": "01242587469",
+                        "Guardian": "Vegeta"
+                    }
+                },
+                {
+                    "Name": "John",
+                    "ID": "154785",
+                    "Roll": "3",
+                    "Marks": {
+                        "Bangla": 88,
+                        "English": 98,
+                        "Math": 85,
+                        "Science": 95,
+                        "Life and Livelihood": 92,
+                        "Digital Technology": 89,
+                        "History and Social Science": 100,
+                        "Religion": 95,
+                        "Wellbeing": 99,
+                        "Arts and Culture": 80
+                    },
+                    "OtherInfo": {
+                        "Age": 7,
+                        "Address": "Naogaon",
+                        "Phone Number": "01785496321",
+                        "Guardian": "Elsa"
                     }
                 }
             ]
@@ -72,45 +78,49 @@
             "class": "2",
             "students": [
                 {
-                    "Name": "Student 3",
-                    "ID": "003",
-                    "Roll": "01",
+                    "Name": "Krillin",
+                    "ID": "147595",
+                    "Roll": "1",
                     "Marks": {
-                        "Subject1": 81,
-                        "Subject2": 82,
-                        "Subject3": 83,
-                        "Subject4": 84,
-                        "Subject5": 85,
-                        "Subject6": 86,
-                        "Subject7": 87,
-                        "Subject8": 88,
-                        "Subject9": 89,
-                        "Subject10": 90
+                        "Bangla": 85,
+                        "English": 78,
+                        "Math": 90,
+                        "Science": 88,
+                        "Life and Livelihood": 76,
+                        "Digital Technology": 92,
+                        "History and Social Science": 89,
+                        "Religion": 94,
+                        "Wellbeing": 81,
+                        "Arts and Culture": 87
                     },
                     "OtherInfo": {
                         "Age": 7,
-                        "Address": "789 Main St"
+                        "Address": "Earth",
+                        "Phone Number": "01758496582",
+                        "Guardian": "Android 18"
                     }
                 },
                 {
-                    "Name": "Student 4",
-                    "ID": "004",
-                    "Roll": "02",
+                    "Name": "Goku",
+                    "ID": "154879",
+                    "Roll": "2",
                     "Marks": {
-                        "Subject1": 91,
-                        "Subject2": 92,
-                        "Subject3": 93,
-                        "Subject4": 94,
-                        "Subject5": 95,
-                        "Subject6": 96,
-                        "Subject7": 97,
-                        "Subject8": 98,
-                        "Subject9": 99,
-                        "Subject10": 100
+                        "Bangla": 85,
+                        "English": 98,
+                        "Math": 100,
+                        "Science": 100,
+                        "Life and Livelihood": 100,
+                        "Digital Technology": 100,
+                        "History and Social Science": 88,
+                        "Religion": 95,
+                        "Wellbeing": 98,
+                        "Arts and Culture": 80
                     },
                     "OtherInfo": {
                         "Age": 7,
-                        "Address": "1011 Main St"
+                        "Address": "Earth",
+                        "Phone Number": "01789654231",
+                        "Guardian": "Master Roshi"
                     }
                 }
             ]
@@ -119,427 +129,78 @@
             "class": "3",
             "students": [
                 {
-                    "Name": "Student 5",
-                    "ID": "005",
-                    "Roll": "01",
+                    "Name": "Beerus",
+                    "ID": "125874",
+                    "Roll": "1",
                     "Marks": {
-                        "Subject1": 70,
-                        "Subject2": 72,
-                        "Subject3": 74,
-                        "Subject4": 76,
-                        "Subject5": 78,
-                        "Subject6": 80,
-                        "Subject7": 82,
-                        "Subject8": 84,
-                        "Subject9": 86,
-                        "Subject10": 88
+                        "Bangla": 90,
+                        "English": 85,
+                        "Math": 98,
+                        "Science": 100,
+                        "Life and Livelihood": 87,
+                        "Digital Technology": 96,
+                        "History and Social Science": 84,
+                        "Religion": 95,
+                        "Wellbeing": 96,
+                        "Arts and Culture": 88
                     },
                     "OtherInfo": {
-                        "Age": 8,
-                        "Address": "1213 Main St"
+                        "Age": 7,
+                        "Address": "Planet Beerus",
+                        "Phone Number": "01875624103",
+                        "Guardian": "Whis"
                     }
                 },
                 {
-                    "Name": "Student 6",
-                    "ID": "006",
-                    "Roll": "02",
+                    "Name": "Champa",
+                    "ID": "154879",
+                    "Roll": "2",
                     "Marks": {
-                        "Subject1": 79,
-                        "Subject2": 81,
-                        "Subject3": 83,
-                        "Subject4": 85,
-                        "Subject5": 87,
-                        "Subject6": 89,
-                        "Subject7": 91,
-                        "Subject8": 93,
-                        "Subject9": 95,
-                        "Subject10": 97
+                        "Bangla": 88,
+                        "English": 98,
+                        "Math": 100,
+                        "Science": 99,
+                        "Life and Livelihood": 95,
+                        "Digital Technology": 100,
+                        "History and Social Science": 80,
+                        "Religion": 86,
+                        "Wellbeing": 88,
+                        "Arts and Culture": 81
                     },
                     "OtherInfo": {
                         "Age": 8,
-                        "Address": "1415 Main St"
+                        "Address": "Planet Champa",
+                        "Phone Number": "01789542361",
+                        "Guardian": "Vados"
+                    }
+                },
+                {
+                    "Name": "Zeno",
+                    "ID": "145698",
+                    "Roll": "3",
+                    "Marks": {
+                        "Bangla": 89,
+                        "English": 88,
+                        "Math": 90,
+                        "Science": 100,
+                        "Life and Livelihood": 98,
+                        "Digital Technology": 100,
+                        "History and Social Science": 85,
+                        "Religion": 88,
+                        "Wellbeing": 95,
+                        "Arts and Culture": 80
+                    },
+                    "OtherInfo": {
+                        "Age": 8,
+                        "Address": "Zeno Palace",
+                        "Phone Number": "01598742361",
+                        "Guardian": "Grand priest"
                     }
                 }
             ]
         },
         {
             "class": "4",
-            "students": [
-                {
-                    "Name": "Student 7",
-                    "ID": "007",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 60,
-                        "Subject2": 62,
-                        "Subject3": 64,
-                        "Subject4": 66,
-                        "Subject5": 68,
-                        "Subject6": 70,
-                        "Subject7": 72,
-                        "Subject8": 74,
-                        "Subject9": 76,
-                        "Subject10": 78
-                    },
-                    "OtherInfo": {
-                        "Age": 9,
-                        "Address": "1617 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 8",
-                    "ID": "008",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 69,
-                        "Subject2": 71,
-                        "Subject3": 73,
-                        "Subject4": 75,
-                        "Subject5": 77,
-                        "Subject6": 79,
-                        "Subject7": 81,
-                        "Subject8": 83,
-                        "Subject9": 85,
-                        "Subject10": 87
-                    },
-                    "OtherInfo": {
-                        "Age": 9,
-                        "Address": "1819 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "5",
-            "students": [
-                {
-                    "Name": "Student 9",
-                    "ID": "009",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 55,
-                        "Subject2": 57,
-                        "Subject3": 59,
-                        "Subject4": 61,
-                        "Subject5": 63,
-                        "Subject6": 65,
-                        "Subject7": 67,
-                        "Subject8": 69,
-                        "Subject9": 71,
-                        "Subject10": 73
-                    },
-                    "OtherInfo": {
-                        "Age": 10,
-                        "Address": "2021 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 10",
-                    "ID": "010",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 64,
-                        "Subject2": 66,
-                        "Subject3": 68,
-                        "Subject4": 70,
-                        "Subject5": 72,
-                        "Subject6": 74,
-                        "Subject7": 76,
-                        "Subject8": 78,
-                        "Subject9": 80,
-                        "Subject10": 82
-                    },
-                    "OtherInfo": {
-                        "Age": 10,
-                        "Address": "2223 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "6",
-            "students": [
-                {
-                    "Name": "Student 11",
-                    "ID": "011",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 50,
-                        "Subject2": 52,
-                        "Subject3": 54,
-                        "Subject4": 56,
-                        "Subject5": 58,
-                        "Subject6": 60,
-                        "Subject7": 62,
-                        "Subject8": 64,
-                        "Subject9": 66,
-                        "Subject10": 68
-                    },
-                    "OtherInfo": {
-                        "Age": 11,
-                        "Address": "2425 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 12",
-                    "ID": "012",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 59,
-                        "Subject2": 61,
-                        "Subject3": 63,
-                        "Subject4": 65,
-                        "Subject5": 67,
-                        "Subject6": 69,
-                        "Subject7": 71,
-                        "Subject8": 73,
-                        "Subject9": 75,
-                        "Subject10": 77
-                    },
-                    "OtherInfo": {
-                        "Age": 11,
-                        "Address": "2627 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "7",
-            "students": [
-                {
-                    "Name": "Student 13",
-                    "ID": "013",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 45,
-                        "Subject2": 47,
-                        "Subject3": 49,
-                        "Subject4": 51,
-                        "Subject5": 53,
-                        "Subject6": 55,
-                        "Subject7": 57,
-                        "Subject8": 59,
-                        "Subject9": 61,
-                        "Subject10": 63
-                    },
-                    "OtherInfo": {
-                        "Age": 12,
-                        "Address": "2829 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 14",
-                    "ID": "014",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 54,
-                        "Subject2": 56,
-                        "Subject3": 58,
-                        "Subject4": 60,
-                        "Subject5": 62,
-                        "Subject6": 64,
-                        "Subject7": 66,
-                        "Subject8": 68,
-                        "Subject9": 70,
-                        "Subject10": 72
-                    },
-                    "OtherInfo": {
-                        "Age": 12,
-                        "Address": "3031 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "8",
-            "students": [
-                {
-                    "Name": "Student 15",
-                    "ID": "015",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 40,
-                        "Subject2": 42,
-                        "Subject3": 44,
-                        "Subject4": 46,
-                        "Subject5": 48,
-                        "Subject6": 50,
-                        "Subject7": 52,
-                        "Subject8": 54,
-                        "Subject9": 56,
-                        "Subject10": 58
-                    },
-                    "OtherInfo": {
-                        "Age": 13,
-                        "Address": "3233 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 16",
-                    "ID": "016",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 49,
-                        "Subject2": 51,
-                        "Subject3": 53,
-                        "Subject4": 55,
-                        "Subject5": 57,
-                        "Subject6": 59,
-                        "Subject7": 61,
-                        "Subject8": 63,
-                        "Subject9": 65,
-                        "Subject10": 67
-                    },
-                    "OtherInfo": {
-                        "Age": 13,
-                        "Address": "3435 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "9",
-            "students": [
-                {
-                    "Name": "Student 17",
-                    "ID": "017",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 35,
-                        "Subject2": 37,
-                        "Subject3": 39,
-                        "Subject4": 41,
-                        "Subject5": 43,
-                        "Subject6": 45,
-                        "Subject7": 47,
-                        "Subject8": 49,
-                        "Subject9": 51,
-                        "Subject10": 53
-                    },
-                    "OtherInfo": {
-                        "Age": 14,
-                        "Address": "3637 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 18",
-                    "ID": "018",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 44,
-                        "Subject2": 46,
-                        "Subject3": 48,
-                        "Subject4": 50,
-                        "Subject5": 52,
-                        "Subject6": 54,
-                        "Subject7": 56,
-                        "Subject8": 58,
-                        "Subject9": 60,
-                        "Subject10": 62
-                    },
-                    "OtherInfo": {
-                        "Age": 14,
-                        "Address": "3839 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "10",
-            "students": [
-                {
-                    "Name": "Student 19",
-                    "ID": "019",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 30,
-                        "Subject2": 32,
-                        "Subject3": 34,
-                        "Subject4": 36,
-                        "Subject5": 38,
-                        "Subject6": 40,
-                        "Subject7": 42,
-                        "Subject8": 44,
-                        "Subject9": 46,
-                        "Subject10": 48
-                    },
-                    "OtherInfo": {
-                        "Age": 15,
-                        "Address": "4041 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 20",
-                    "ID": "020",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 39,
-                        "Subject2": 41,
-                        "Subject3": 43,
-                        "Subject4": 45,
-                        "Subject5": 47,
-                        "Subject6": 49,
-                        "Subject7": 51,
-                        "Subject8": 53,
-                        "Subject9": 55,
-                        "Subject10": 57
-                    },
-                    "OtherInfo": {
-                        "Age": 15,
-                        "Address": "4243 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "11",
-            "students": [
-                {
-                    "Name": "Student 21",
-                    "ID": "021",
-                    "Roll": "01",
-                    "Marks": {
-                        "Subject1": 25,
-                        "Subject2": 27,
-                        "Subject3": 29,
-                        "Subject4": 31,
-                        "Subject5": 33,
-                        "Subject6": 35,
-                        "Subject7": 37,
-                        "Subject8": 39,
-                        "Subject9": 41,
-                        "Subject10": 43
-                    },
-                    "OtherInfo": {
-                        "Age": 16,
-                        "Address": "4445 Main St"
-                    }
-                },
-                {
-                    "Name": "Student 22",
-                    "ID": "022",
-                    "Roll": "02",
-                    "Marks": {
-                        "Subject1": 34,
-                        "Subject2": 36,
-                        "Subject3": 38,
-                        "Subject4": 40,
-                        "Subject5": 42,
-                        "Subject6": 44,
-                        "Subject7": 46,
-                        "Subject8": 48,
-                        "Subject9": 50,
-                        "Subject10": 52
-                    },
-                    "OtherInfo": {
-                        "Age": 16,
-                        "Address": "4647 Main St"
-                    }
-                }
-            ]
-        },
-        {
-            "class": "12",
             "students": []
         }
     ]
