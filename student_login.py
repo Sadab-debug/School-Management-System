@@ -1,7 +1,38 @@
 from functions import showCopyrightClaim
 
 class StudentLogin:
+
+    """
+    The StudentLogin class handles the creation and management of the student login interface.
+    It provides functionalities for students to log in by entering their ID and has a button
+    to navigate back to the main menu.
+
+    Attributes:
+        master (tk.Tk): The main window or parent widget.
+        ctk (module): CustomTkinter module used for custom widgets.
+        button_font (font): Font used for the buttons.
+        login_frame (CTkFrame): Frame that holds all login-related widgets.
+        header_label (CTkLabel): Label for the header text.
+        id_label (CTkLabel): Label for the ID entry.
+        id_entry (CTkEntry): Entry widget for the student ID.
+        back_button (CTkButton): Button to navigate back to the main menu.
+        login_button (CTkButton): Button to log in as a student.
+
+    Methods:
+        __init__(self, master, ctk, buttonFont): Initializes the StudentLogin class and sets up the GUI elements.
+        back_to_main(self): Destroys the current login frame and returns to the main menu.
+    """
+
+
     def __init__(self, master, ctk, buttonFont):
+        """
+        Initializes the StudentLogin class. Sets up the login frame, header, ID entry, and buttons.
+
+        Args:
+            master (tk.Tk): The main window or parent widget.
+            ctk (module): CustomTkinter module used for custom widgets.
+            buttonFont (font): Font used for the buttons.
+        """
         self.ctk = ctk
         self.master = master
         self.button_font = buttonFont
@@ -76,5 +107,8 @@ class StudentLogin:
         # self.copyright_claim.place(relx=0.95, rely=0.95, anchor="se")
 
     def back_to_main(self):
+        '''
+        Handles the back button function. Destroys the current window and get back to the main menu
+        '''
         self.login_frame.destroy()
         self.master.create_main_frame()

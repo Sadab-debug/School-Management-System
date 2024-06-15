@@ -1,7 +1,33 @@
 from functions import showCopyrightClaim
 
 class Credentials:
+
+    '''
+    The Credentials class handles the creation and display of the credentials frame.
+    It shows the privacy policy and provides a button to navigate back to the main menu.
+
+    Attributes:
+        master (tk.Tk): The main window or parent widget.
+        ctk (module): CustomTkinter module used for custom widgets.
+        button_font (font): Font used for the buttons and text.
+        credential_frame (CTkFrame): Frame that holds all credentials-related widgets.
+        privacy_policy_text (CTkLabel): Label to display the privacy policy text.
+        back_button (CTkButton): Button to navigate back to the main menu.
+
+    Methods:
+        __init__(self, master, ctk, buttonFont): Initializes the Credentials class and sets up the GUI elements.
+        back_to_main(self): Destroys the current credentials frame and returns to the main menu.
+    '''
+
     def __init__(self, master, ctk, buttonFont):
+        '''
+        Initializes the Credentials class. Sets up the credential frame, privacy policy text, and back button.
+
+        Args:
+            master (tk.Tk): The main window or parent widget.
+            ctk (module): CustomTkinter module used for custom widgets.
+            buttonFont (font): Font used for the buttons and text.
+        '''
         self.ctk = ctk
         self.master = master
         self.button_font = buttonFont
@@ -52,6 +78,9 @@ class Credentials:
 
 
     def back_to_main(self):
+        '''
+        Handles the back button action. Destroys the current credentials frame and navigates back to the main menu.
+        '''
         self.credential_frame.destroy()
         self.master.create_main_frame()
 

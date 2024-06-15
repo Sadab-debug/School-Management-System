@@ -10,7 +10,26 @@ ctk.set_appearance_mode("dark") #options: "light", "dark", "system"
 ctk.set_default_color_theme("blue")  # Options: "blue", "green", "dark-blue"
 
 class App(ctk.CTk):
+
+    '''
+    The main application class for the School Management System.
+
+    Attributes:
+        main_frame (CTkFrame): The main frame that holds all the main menu widgets.
+        button_font (tuple): Font style used for the buttons.
+
+    Methods:
+        create_main_frame(): Creates the main menu frame with buttons for login and privacy policy.
+        openStudentLogin(): Opens the student login interface.
+        openTeacherLogin(): Opens the teacher login interface.
+        openAdminLogin(): Opens the admin login interface.
+        openCredentials(): Opens the privacy and policy information.
+    '''
+
     def __init__(self):
+        '''
+        Initializes the the main screen and widgets inside the screen.
+        '''
         super().__init__()
 
         screen_width = self.winfo_screenwidth()
@@ -32,6 +51,10 @@ class App(ctk.CTk):
 
 
     def create_main_frame(self):
+        '''
+        Creates the main menu frame with buttons for logging in as a student, teacher, or admin,
+        and for viewing privacy and policy information.
+        '''
         if self.main_frame is not None:
             self.main_frame.destroy()
 
@@ -119,22 +142,32 @@ class App(ctk.CTk):
 
 
     def openStudentLogin(self):
+        """
+        Destroys the main frame and opens the student login interface.
+        """
         self.main_frame.destroy()
-        StudentLogin(self, ctk, buttonFont = self.button_font)
+        StudentLogin(self, ctk, buttonFont=self.button_font)
 
     def openTeacherLogin(self):
+        """
+        Destroys the main frame and opens the teacher login interface.
+        """
         self.main_frame.destroy()
-        TeacherLogin(self, ctk, buttonFont = self.button_font)
+        TeacherLogin(self, ctk, buttonFont=self.button_font)
 
     def openAdminLogin(self):
+        """
+        Destroys the main frame and opens the admin login interface.
+        """
         self.main_frame.destroy()
-        AdminLogin(self, ctk, buttonFont = self.button_font)
-        
+        AdminLogin(self, ctk, buttonFont=self.button_font)
 
     def openCredentials(self):
+        """
+        Destroys the main frame and opens the privacy and policy information interface.
+        """
         self.main_frame.destroy()
-        Credentials(self, ctk, buttonFont = self.button_font)
-
+        Credentials(self, ctk, buttonFont=self.button_font)
 
 
 # create and run the app

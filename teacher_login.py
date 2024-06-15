@@ -1,7 +1,39 @@
 from functions import showCopyrightClaim
 
 class TeacherLogin:
+
+    '''
+    The StudentLogin class handles the creation and management of the student login interface.
+    It provides fucntinalities for teachers to log in by providing their teaher's id and navigate
+    back to the menu using back button
+
+    Attributes:
+        master(tk.Tk): The main window or parent widget.
+        ctk(module): Customtkinter module used for custom widgets.
+        button_font(font): Font used for the buttons.
+        login_frame(CTkFrame): The frame that holds all login related widgets.
+        header_label(CTkLabel): Label for the header text.
+        id_label(CTkLabel): Label for the id entry.
+        id_entry(CTkEntry): Entry widget for teacher id.
+        back_button(CTkButton): Button for navigating to the main menu.
+        login_button(CTkButton): Button to login.
+
+
+    Methods:
+        __init__(self, master, ctk, buttonFont): Initializes the TeacherLogin class and sets up the gui elements.
+        backToMain(self): Destroys the current window and returns to the main frame.
+
+    '''
+
     def __init__(self, master, ctk, buttonFont):
+        '''
+        Initializes the TeacherLogin class. Sets up the login frame, header, id entry and buttons.
+
+        Args:
+            master(tk.Tk): The main window or parent widget.
+            ctk(module): Module used for custom widgets.
+            buttonFont(font): Font used for button.
+        '''
         self.ctk = ctk
         self.master = master
         self.button_font = buttonFont
@@ -48,7 +80,7 @@ class TeacherLogin:
             width=150,
             height=35,
             fg_color="red",  # Ensure visible color
-            command=self.back_to_main
+            command=self.backToMain
         )
         self.back_button.place(relx=0.3, rely=0.6)
 
@@ -66,6 +98,9 @@ class TeacherLogin:
         self.login_button.place(relx=0.6, rely=0.6)
 
 
-    def back_to_main(self):
+    def backToMain(self):
+        '''
+        Destroys the current window and returns to the main menu
+        '''
         self.login_frame.destroy()
         self.master.create_main_frame()

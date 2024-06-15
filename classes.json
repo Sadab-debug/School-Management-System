@@ -4,9 +4,9 @@
             "class": "1",
             "students": [
                 {
-                    "Name": "Student 1",
-                    "ID": "001",
-                    "Roll": "01",
+                    "Name": "Steve",
+                    "ID": "187456",
+                    "Roll": "1",
                     "Marks": {
                         "Bangla": 85,
                         "English": 78,
@@ -47,6 +47,29 @@
                         "Address": "Planet Vegeta",
                         "Phone Number": "01242587469",
                         "Guardian": "Vegeta"
+                    }
+                },
+                {
+                    "Name": "John",
+                    "ID": "154785",
+                    "Roll": "3",
+                    "Marks": {
+                        "Bangla": 88,
+                        "English": 98,
+                        "Math": 85,
+                        "Science": 95,
+                        "Life and Livelihood": 92,
+                        "Digital Technology": 89,
+                        "History and Social Science": 100,
+                        "Religion": 95,
+                        "Wellbeing": 99,
+                        "Arts and Culture": 80
+                    },
+                    "OtherInfo": {
+                        "Age": 7,
+                        "Address": "Naogaon",
+                        "Phone Number": "01785496321",
+                        "Guardian": "Elsa"
                     }
                 }
             ]
@@ -127,8 +150,58 @@
                         "Phone Number": "01875624103",
                         "Guardian": "Whis"
                     }
+                },
+                {
+                    "Name": "Champa",
+                    "ID": "154879",
+                    "Roll": "2",
+                    "Marks": {
+                        "Bangla": 88,
+                        "English": 98,
+                        "Math": 100,
+                        "Science": 99,
+                        "Life and Livelihood": 95,
+                        "Digital Technology": 100,
+                        "History and Social Science": 80,
+                        "Religion": 86,
+                        "Wellbeing": 88,
+                        "Arts and Culture": 81
+                    },
+                    "OtherInfo": {
+                        "Age": 8,
+                        "Address": "Planet Champa",
+                        "Phone Number": "01789542361",
+                        "Guardian": "Vados"
+                    }
+                },
+                {
+                    "Name": "Zeno",
+                    "ID": "145698",
+                    "Roll": "3",
+                    "Marks": {
+                        "Bangla": 89,
+                        "English": 88,
+                        "Math": 90,
+                        "Science": 100,
+                        "Life and Livelihood": 98,
+                        "Digital Technology": 100,
+                        "History and Social Science": 85,
+                        "Religion": 88,
+                        "Wellbeing": 95,
+                        "Arts and Culture": 80
+                    },
+                    "OtherInfo": {
+                        "Age": 8,
+                        "Address": "Zeno Palace",
+                        "Phone Number": "01598742361",
+                        "Guardian": "Grand priest"
+                    }
                 }
             ]
+        },
+        {
+            "class": "4",
+            "students": []
         }
     ]
 }

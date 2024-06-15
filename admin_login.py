@@ -3,7 +3,37 @@ from json import load
 from admin_account import AdminAccount
 
 class AdminLogin:
+    '''
+    The AdminLogin class handles the creation and management of the admin login interface.
+    It provides functionalities for admins to log in by entering their ID and has a button
+    to navigate back to the main menu.
+
+    Attributes:
+        master (tk.Tk): The main window or parent widget.
+        ctk (module): CustomTkinter module used for custom widgets.
+        button_font (font): Font used for the buttons.
+        login_frame (CTkFrame): Frame that holds all login-related widgets.
+        header_label (CTkLabel): Label for the header text.
+        id_label (CTkLabel): Label for the ID entry.
+        id_entry (CTkEntry): Entry widget for the admin ID.
+        back_button (CTkButton): Button to navigate back to the main menu.
+        login_button (CTkButton): Button to log in as an admin.
+
+    Methods:
+        __init__(self, master, ctk, buttonFont): Initializes the AdminLogin class and sets up the GUI elements.
+        backToMain(self): Destroys the current login frame and returns to the main menu.
+        openAdminAccount(self): Destroys the current login frame and opens the admin account interface.
+        authenticateAdminLogin(self): Authenticates the admin login by checking the ID against stored data.
+    '''
     def __init__(self, master, ctk, buttonFont):
+        '''
+        Initializes the AdminLogin class. Sets up the login frame, header, ID entry, and buttons.
+
+        Args:
+            master (tk.Tk): The main window or parent widget.
+            ctk (module): CustomTkinter module used for custom widgets.
+            buttonFont (font): Font used for the buttons.
+        '''
         self.ctk = ctk
         self.master = master
         self.button_font = buttonFont
@@ -76,14 +106,26 @@ class AdminLogin:
 
 
     def backToMain(self):
+        '''
+        Handles the back button action. Destroys the current login frame and navigates back to the main menu.
+        '''
         self.login_frame.destroy()
         self.master.create_main_frame()
 
     def openAdminAccount(self):
+        '''
+        Opens the admin account interface by destroying the current login frame and initializing the AdminAccount class.
+        '''
         self.login_frame.destroy()
         AdminAccount(self.master, self.ctk, self.button_font)
 
     def authenticateAdminLogin(self):
+        '''
+        Authenticates the admin login by checking the entered ID against the stored admin ID in a JSON file.
+
+        If the ID matches, a success message is shown and the admin account interface is opened.
+        If the ID does not match or the file does not exist, an error message is shown.
+        '''
         data_file = 'admin_id.json'
         id_no = self.id_entry.get()
 

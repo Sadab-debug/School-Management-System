@@ -39,6 +39,18 @@ class AdminAccount:
     """
 
     def __init__(self, master, ctk, button_font) -> None:
+
+        
+        """
+        Initializes the AdminAccount class. Sets up the main frame and account frame, loads the profile
+        image, and displays existing classes.
+
+        Args:
+            master (tk.Tk): The main window or parent widget.
+            ctk (module): CustomTkinter module used for custom widgets.
+            button_font (font): Font used for the buttons.
+        """
+
         self.master = master
         self.ctk = ctk
         self.button_font = button_font
@@ -102,14 +114,20 @@ class AdminAccount:
         self.showExistingClasses()
 
 
-    #back button
+
     def backToMain(self):
+        """
+        Handles the back button action. Destroys the current main frame and navigates back to the main menu.
+        """
         self.main_frame.destroy()
         self.master.create_main_frame()
 
 
-    # load existing profile picture from admin_id.json
+    
     def loadProfileImage(self):
+        """
+        Loads the profile image from 'admin_id.json' if it exists. Displays a placeholder if not found.
+        """
         try:
             with open('admin_id.json', 'r') as f:
                 data = json.load(f)
@@ -123,8 +141,11 @@ class AdminAccount:
             print("admin_id.json not found or corrupted")
 
 
-    # show existing classes inside main_frame
+
     def showExistingClasses(self):
+        """
+        Displays existing classes by reading from 'classes.json'.
+        """
         try:
             with open('classes.json', 'r') as f:
                 data = json.load(f)
@@ -137,8 +158,14 @@ class AdminAccount:
             print("Error decoding JSON from classes.json.")
 
 
-    # button for displaying classes
+
     def addClassButton(self, class_name):
+        """
+        Adds a button for each class in the main frame.
+
+        Args:
+            class_name (str): The name of the class.
+        """
         self.classes = self.ctk.CTkButton(
             self.main_frame,
             text=f"Class {class_name}",
@@ -151,8 +178,11 @@ class AdminAccount:
         self.classes.pack(padx=10, pady=10)
 
 
-    # add classes to classes.json
+
     def createClass(self):
+        """
+        Opens a new window to create a class and saves it to 'classes.json'.
+        """
         self.width = 200
         self.height = 250
 
@@ -194,8 +224,11 @@ class AdminAccount:
         self.window.mainloop()
 
         
-    # saves new class to classes inside classes.json
+    
     def saveClass(self):
+        """
+        Saves the new class to 'classes.json' and updates the GUI.
+        """
         class_name = self.class_entry.get()
         if class_name:
             try:
@@ -223,8 +256,14 @@ class AdminAccount:
                 messagebox.showerror("Error", "Class already exists")
                 
 
-    # open the student list inside a particular class
     def openClass(self, c, filename='classes.json'):
+        """
+        Opens a window to display and manage students in the selected class.
+
+        Args:
+            c (str): The name of the class.
+            filename (str): The JSON file to read data from. Defaults to 'classes.json'.
+        """
         self.width = 1200
         self.height = 750
 
@@ -233,6 +272,7 @@ class AdminAccount:
         self.window.geometry(f"{self.width}x{self.height}")
         self.window.title(f"Class : {c}")
 
+        # Display copyright claim
         showCopyrightClaim(self.ctk, self.window)
 
         self.main_frame = self.ctk.CTkScrollableFrame(
@@ -245,42 +285,33 @@ class AdminAccount:
         )
         self.main_frame.place(relx=0.5, rely=0.5, anchor='center')
 
-
-        # add students
-        self.create_student = self.ctk.CTkButton(
-            self.window,
-            text = "create student",
-            font = self.button_font,
-            width = 50,
-            height = 25,
-            command = lambda: self.createStudent(class_name=c)
-        )
-        self.create_student.pack(side='bottom', pady=10)
-
         try:
             with open(filename, 'r') as f:
                 data = json.load(f)
 
+            class_data = None
             for cls in data['classes']:
                 if cls['class'] == c:
-                    students = cls['students']
-                    
-                    for student in students:
-                        student_name = student['Name']
-                        show_student = self.ctk.CTkButton(
-                            self.main_frame,
-                            width = 950,
-                            height = 50,
-                            text = student_name,
-                            font = self.button_font,
-                            fg_color = 'black',
-                            border_width = 2,
-                            border_color = 'white'
-                        )
-                        show_student.pack(padx=10, pady=10)
+                    class_data = cls
+                    break
+            
+            if not class_data:
+                raise ValueError("Class not found")
 
-                        
-                        
+            for student in class_data["students"]:
+                student_info = f"{student['Name']}      Roll: {student['Roll']}"
+                show_student = self.ctk.CTkButton(
+                    self.main_frame,
+                    width=950,
+                    height=50,
+                    text=student_info,
+                    font=self.button_font,
+                    fg_color='black',
+                    border_width=2,
+                    border_color='white'
+                )
+                show_student.pack(padx=10, pady=10)
+                                        
         except FileNotFoundError:
             messagebox.showerror("Error", "classes.json not found.")
         except json.JSONDecodeError:
@@ -288,11 +319,27 @@ class AdminAccount:
         except KeyError as e:
             messagebox.showerror("Error", f"Missing key in JSON data: {e}")
 
+        # Add students button
+        self.create_student = self.ctk.CTkButton(
+            self.window,
+            text="Create Student",
+            font=self.button_font,
+            width=50,
+            height=25,
+            command=lambda: self.createStudent(class_name=c)
+        )
+        self.create_student.pack(side='bottom', pady=10)
+
         self.window.mainloop()
 
 
-    # create new students inside a particular class
     def createStudent(self, class_name):
+        """
+        Opens a window to create a new student for the selected class.
+
+        Args:
+            class_name (str): The name of the class to which the student will be added.
+        """
         self.student_window = Toplevel(self.master)
         self.student_window.title(f"Class {class_name}")
 
@@ -360,6 +407,12 @@ class AdminAccount:
 
 
     def saveStudent(self, class_name):
+        """
+        Saves the new student to the respective class in 'classes.json'.
+
+        Args:
+            class_name (str): The name of the class to which the student will be added.
+        """
         student_data = {
             "Name": self.student_name_entry.get(),
             "ID": self.student_id_entry.get(),
