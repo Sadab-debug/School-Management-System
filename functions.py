@@ -31,16 +31,16 @@ def showInfo(message):
     messagebox.showinfo("Info", message)
 
 
-def uploadImage(self):
+def uploadImage(self, filename):
     file_path = filedialog.askopenfilename(filetypes=[("Image files", "*.jpg;*.jpeg;*.png")])
     if file_path:
         try:
-            with open('admin_id.json', 'r') as f:
+            with open(filename, 'r') as f:
                 data = json.load(f)
 
             data['profile_pic'] = file_path  # Update the profile_pic path
 
-            with open('admin_id.json', 'w') as f:
+            with open(filename, 'w') as f:
                 json.dump(data, f, indent=4)
 
             image = Image.open(file_path)

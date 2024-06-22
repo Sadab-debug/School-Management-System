@@ -90,7 +90,7 @@ class AdminAccount:
         self.loadProfileImage()
 
         # Add button to upload photo
-        self.upload_button = self.ctk.CTkButton(self.account_frame, font=self.button_font, text="Upload Photo", width=150, height=35, text_color='white', command=lambda: uploadImage(self))
+        self.upload_button = self.ctk.CTkButton(self.account_frame, font=self.button_font, text="Upload Photo", width=150, height=35, text_color='white', command=lambda: uploadImage(self, filename='admin_id.json'))
         self.upload_button.place(relx=0.2, rely=0.25)
 
         # create student account

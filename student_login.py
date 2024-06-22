@@ -1,4 +1,6 @@
-from functions import showCopyrightClaim
+from functions import showCopyrightClaim, showErrorMessage
+from student_account import StudentAccount
+import json
 
 class StudentLogin:
 
@@ -17,10 +19,17 @@ class StudentLogin:
         id_entry (CTkEntry): Entry widget for the student ID.
         back_button (CTkButton): Button to navigate back to the main menu.
         login_button (CTkButton): Button to log in as a student.
+        class_label(CTkLabel): Label for the class.
+        class_entry(CTkEntry): Entry for class name.
+        class_name: Retrives name of class from class_entry.
+        id_name: Retrives id number from id_entry.
 
     Methods:
         __init__(self, master, ctk, buttonFont): Initializes the StudentLogin class and sets up the GUI elements.
         back_to_main(self): Destroys the current login frame and returns to the main menu.
+        openStudentAccount(self): Destroys the current login frame and opens StudentAccount
+        authenticateStudentLogin(self): Authenticates student login by checking the id against stored data
+
     """
 
 
@@ -44,6 +53,7 @@ class StudentLogin:
         # copyright claim 
         showCopyrightClaim(self.ctk, self.login_frame)
 
+
         # label header
         self.header_label = self.ctk.CTkLabel(
             self.login_frame,
@@ -52,6 +62,25 @@ class StudentLogin:
             text_color = "white",
         )
         self.header_label.place(relx=0.5, rely=0, anchor="n", y=10)
+
+        # label class
+        self.class_label = self.ctk.CTkLabel(
+            self.login_frame,
+            text = "Class:",
+            text_color = 'white',
+            font=self.button_font
+        )
+        self.class_label.place(relx=0.3, rely=0.3)
+
+        # class entry 
+        self.class_entry = self.ctk.CTkEntry(
+            self.login_frame,
+            width = 250,
+            font = self.button_font,
+            placeholder_text = "Enter class name"
+        )
+        self.class_entry.place(relx=0.4, rely=0.3)
+
 
         # Label ID
         self.id_label = self.ctk.CTkLabel(
@@ -66,7 +95,8 @@ class StudentLogin:
         self.id_entry = self.ctk.CTkEntry(
             self.login_frame,
             width=250,
-            font=self.button_font
+            font=self.button_font,
+            placeholder_text = "Enter ID no."
         )
         self.id_entry.place(relx=0.4, rely=0.4)
 
@@ -92,19 +122,10 @@ class StudentLogin:
             width=150,
             height=35,
             # fg_color="red",  # Ensure visible color
-            # command=self.back_to_main
+            command=self.authenticateStudentLogin
         )
         self.login_button.place(relx=0.6, rely=0.6)
 
-        # copyright
-        # self.copyright_claim = self.ctk.CTkLabel(
-        #     self.login_frame,
-        #     text="© 2024 All rights reserved. Software developed by Sadab.",
-        #     text_color="white",
-        #     font=("Arial", 12, "italic"),
-        #     justify="right"
-        # )
-        # self.copyright_claim.place(relx=0.95, rely=0.95, anchor="se")
 
     def back_to_main(self):
         '''
@@ -112,3 +133,94 @@ class StudentLogin:
         '''
         self.login_frame.destroy()
         self.master.create_main_frame()
+
+    def openstudentAccount(self, student_name, student_id, student_roll, bangla_marks, english_marks, math_marks, science_marks, life_and_livelihood_marks, digital_technology_marks, history_and_social_science_marks, religion_marks, wellbeing_marks, arts_and_culture_marks, guardian, age, phone, class_name):
+        '''
+        Opens the student account interface by destroying the current login frame and initializing the StudentAccount class.
+        '''
+        self.student_name = student_name
+        self.student_id = student_id
+        self.student_roll = student_roll
+        self.class_name = class_name
+
+        self.bangla_marks = bangla_marks
+        self.english_marks = english_marks
+        self.math_marks = math_marks
+        self.science_marks = science_marks
+        self.LL_marks = life_and_livelihood_marks
+        self.DT_marks = digital_technology_marks
+        self.HSS_marks = history_and_social_science_marks
+        self.religion_marks = religion_marks
+        self.WB_marks = wellbeing_marks
+        self.AC_marks = arts_and_culture_marks
+
+        self.age = age
+        self.guardian = guardian
+        self.phone = phone
+
+        self.login_frame.destroy()
+        StudentAccount(self.master, self.ctk, self.button_font, student_name, student_id, student_roll, bangla_marks, english_marks, math_marks, science_marks, life_and_livelihood_marks, digital_technology_marks, history_and_social_science_marks, religion_marks,wellbeing_marks, arts_and_culture_marks, age, guardian, phone, class_name)
+
+
+    def authenticateStudentLogin(self):
+        class_name = self.class_entry.get()
+        id_num = self.id_entry.get()
+
+        try:
+            with open('classes.json', 'r') as f:
+                data = json.load(f)
+
+                # Find the class
+                class_data = next((cls for cls in data['classes'] if cls['class'] == class_name), None)
+                if not class_data:
+                    showErrorMessage(f"Class {class_name} doesn't exist")
+                    return 
+
+                # Find the student
+                student_data = next((student for student in class_data['students'] if student['ID'] == id_num), None)
+                if not student_data:
+                    showErrorMessage(f"ID {id_num} not found")
+                    return 
+
+                # Extract student data into variables
+                student_name = student_data['Name']
+                student_id = student_data['ID']
+                student_roll = student_data['Roll']
+                student_marks = student_data['Marks']
+                student_other_info = student_data['OtherInfo']
+
+                # Extract individual marks from the marks dictionary
+                bangla_marks = student_marks.get('Bangla', 'N/A')
+                english_marks = student_marks.get('English', 'N/A')
+                math_marks = student_marks.get('Math', 'N/A')
+                science_marks = student_marks.get('Science', 'N/A')
+                life_and_livelihood_marks = student_marks.get('Life and Livelihood', 'N/A')
+                digital_technology_marks = student_marks.get('Digital Technology', 'N/A')
+                history_and_social_science_marks = student_marks.get('History and Social Science', 'N/A')
+                religion_marks = student_marks.get('Religion', 'N/A')
+                wellbeing_marks = student_marks.get('Wellbeing', 'N/A')
+                arts_and_culture_marks = student_marks.get('Arts and Culture', 'N/A')
+
+                # Extract individual marks from the marks dictionary
+                guardian = student_other_info.get('Guardian')
+                phone = student_other_info.get('Phone Number')
+                age = student_other_info.get('Age')
+
+                # Call the function with extracted variables
+                self.openstudentAccount(
+                    student_name, student_id, student_roll, bangla_marks, english_marks, math_marks, science_marks,
+                    life_and_livelihood_marks, digital_technology_marks, history_and_social_science_marks, religion_marks,
+                    wellbeing_marks, arts_and_culture_marks, guardian, age, phone, class_name
+                )
+
+        except FileNotFoundError:
+            showErrorMessage("File doesn't exist")
+        except json.JSONDecodeError:
+            showErrorMessage("Error reading the JSON file")
+
+
+
+            
+            
+
+        
