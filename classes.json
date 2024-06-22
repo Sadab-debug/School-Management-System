@@ -5,7 +5,7 @@
             "students": [
                 {
                     "Name": "Steve",
-                    "ID": "187456",
+                    "ID": "123456",
                     "Roll": "1",
                     "Marks": {
                         "Bangla": 85,
@@ -70,6 +70,29 @@
                         "Address": "Naogaon",
                         "Phone Number": "01785496321",
                         "Guardian": "Elsa"
+                    }
+                },
+                {
+                    "Name": "Adam",
+                    "ID": "158795",
+                    "Roll": "4",
+                    "Marks": {
+                        "Bangla": 88,
+                        "English": 98,
+                        "Math": 100,
+                        "Science": 95,
+                        "Life and Livelihood": 96,
+                        "Digital Technology": 100,
+                        "History and Social Science": 82,
+                        "Religion": 84,
+                        "Wellbeing": 86,
+                        "Arts and Culture": 80
+                    },
+                    "OtherInfo": {
+                        "Age": 7,
+                        "Address": "Rajshahi",
+                        "Phone Number": "01784596258",
+                        "Guardian": "Rajjak"
                     }
                 }
             ]
@@ -201,6 +224,10 @@
         },
         {
             "class": "4",
+            "students": []
+        },
+        {
+            "class": "5",
             "students": []
         }
     ]
