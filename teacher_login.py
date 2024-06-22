@@ -105,5 +105,5 @@ class TeacherLogin:
         self.login_frame.destroy()
         self.master.create_main_frame()
 
-
-
+    def authenticateTeacherLogin(self):
+        pass
