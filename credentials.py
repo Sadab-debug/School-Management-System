@@ -1,5 +1,6 @@
 from functions import showCopyrightClaim
 
+
 class Credentials:
 
     '''
