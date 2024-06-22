@@ -1,5 +1,6 @@
 from functions import showCopyrightClaim, uploadImage
 
+
 class StudentAccount:
     '''
     StudentAccount class handles all the account related functions of student.

@@ -444,3 +444,4 @@ class AdminAccount:
             messagebox.showerror("Error", "classes.json not found.")
         except json.JSONDecodeError:
             messagebox.showerror("Error", "Error decoding JSON from classes.json.")
+

@@ -4,6 +4,7 @@ from PIL import Image, ImageTk
 import json
 
 
+
 #border effect on hover
 def onEnter(event, var):
     var.configure(border_color="white")

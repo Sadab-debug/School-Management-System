@@ -2,6 +2,7 @@ from functions import showCopyrightClaim, showErrorMessage, showInfo
 from json import load
 from admin_account import AdminAccount
 
+
 class AdminLogin:
     '''
     The AdminLogin class handles the creation and management of the admin login interface.
