@@ -1,4 +1,4 @@
-from functions import uploadImage, showCopyrightClaim
+from functions import uploadImage, showCopyrightClaim, showErrorMessage
 from PIL import Image, ImageTk
 import json
 from tkinter import messagebox, Toplevel
@@ -22,6 +22,7 @@ class AdminAccount:
         profile_picture_label (CTkLabel): Label for the profile picture.
         upload_button (CTkButton): Button to upload a profile picture.
         create_class (CTkButton): Button to create a new class.
+        create_teacher(CTkButton): Button to create new teacher.
         back_button (CTkButton): Button to navigate back to the main menu.
         classes (CTkButton): Button to display each class.
 
@@ -36,6 +37,9 @@ class AdminAccount:
         openClass(self, c, filename='classes.json'): Opens a window to display and manage students in the selected class.
         createStudent(self, class_name): Opens a window to create a new student for the selected class.
         saveStudent(self, class_name): Saves the new student to the respective class in 'classes.json'.
+        createTeacherWindow(self): opens a window and takes teacher's name and id.
+        addToSelected(self): Adds the selected class to selected variable.
+        updateDisplay(self): Updated the display to show selected class
     """
 
     def __init__(self, master, ctk, button_font) -> None:
@@ -54,6 +58,9 @@ class AdminAccount:
         self.master = master
         self.ctk = ctk
         self.button_font = button_font
+
+        # List to store selected options
+        self.selected = []
 
         # Create main frame
         self.main_frame = self.ctk.CTkScrollableFrame(
@@ -97,6 +104,12 @@ class AdminAccount:
         self.create_class = self.ctk.CTkButton(self.account_frame, font=self.button_font, text="Create Class", width=150, height=35, text_color='white', command=self.createClass)
         self.create_class.place(relx=0.2, rely=0.35)
 
+
+        #create teacher account button
+        self.create_teacher = self.ctk.CTkButton(self.account_frame, font=self.button_font, text="Create teacher", width=150, height=35, text_color='white', command=self.createTeacherWindow)
+        self.create_teacher.place(relx=0.2, rely=0.45)
+
+
         # back button
         self.back_button = self.ctk.CTkButton(
             self.account_frame,
@@ -108,7 +121,7 @@ class AdminAccount:
             fg_color="red",  # Ensure visible color
             command=self.backToMain
         )
-        self.back_button.place(relx=0.2, rely=0.45)
+        self.back_button.place(relx=0.2, rely=0.55)
 
         # show existing classes
         self.showExistingClasses()
@@ -223,7 +236,145 @@ class AdminAccount:
 
         self.window.mainloop()
 
+
+    def createTeacherWindow(self):
+        '''Takes name and id of teacher'''
+        self.width = 400
+        self.height = 500
         
+        self.window = self.ctk.CTk()
+        self.window.geometry(f"{self.width}x{self.height}")
+        self.window.resizable(False, False)
+        self.window.title("Create Teacher")
+        
+        # labels
+        self.name_label = self.ctk.CTkLabel(self.window, text="Name:", font=self.button_font)
+        self.name_label.place(relx=0.1, rely=0.1)
+
+        self.id_label = self.ctk.CTkLabel(self.window, text="ID No:", font=self.button_font)
+        self.id_label.place(relx=0.1, rely=0.2)
+
+        self.class_acces_label = self.ctk.CTkLabel(self.window, text="Access:", font=self.button_font)
+        self.class_acces_label.place(relx=0.1, rely=0.3)
+
+        self.label_selected_cls = self.ctk.CTkLabel(self.window, text="Selected:", font=self.button_font)
+        self.label_selected_cls.place(relx=0.1, rely=0.4)
+
+        # entry
+        self.name_entry = self.ctk.CTkEntry(self.window, width=200, corner_radius=4, placeholder_text="Enter name")
+        self.name_entry.place(relx=0.3, rely=0.1)
+        # self.teacher_name = self.name_entry.get()
+
+        self.id_entry = self.ctk.CTkEntry(self.window, width=200, corner_radius=4, placeholder_text="Enter ID no.")
+        self.id_entry.place(relx=0.3, rely=0.2)
+        # self.teacher_id = self.id_entry.get()
+
+        # available class 
+        with open("classes.json", 'r') as f:
+            data = json.load(f)
+        options = [class_name['class'] for class_name in data["classes"]]
+
+        #dropdown menu
+        self.class_access = self.ctk.CTkComboBox(
+            self.window,
+            width=140,
+            height=28,
+            corner_radius=4,
+            border_width=2,
+            border_color='white',
+            button_hover_color='blue',
+            text_color="white",
+            values=options,
+            hover=True
+        )
+        self.class_access.place(relx=0.3, rely=0.3)
+        self.class_access.set("Select Classes")
+
+        # add button to store selected classes 
+        self.add_btn = self.ctk.CTkButton(
+            self.window,
+            width=50,
+            height=35,
+            text="Add",
+            text_color="white",
+            command=self.addToSelected
+        )
+        self.add_btn.place(relx=0.65, rely=0.3)
+
+        # Create a CTkTextbox widget (text field) for displaying selected options
+        self.display = self.ctk.CTkTextbox(
+            self.window,
+            width=200,
+            height=20,
+            corner_radius=5,
+            border_width=2,
+            fg_color=("gray25", "gray20"),
+            text_color="white"
+        )
+        self.display.configure(state="disabled")  # Make the text field read-only initially
+        self.display.place(relx=0.3, rely=0.4)
+
+        # button
+        self.create_button = self.ctk.CTkButton(self.window, text="Create teacher", text_color="white", width=50, height=35, font=self.button_font, command=self.createTeacher)
+        self.create_button.place(relx=0.35, rely=0.5)
+
+        self.window.mainloop()
+
+
+    # Function to update the text field with selected options
+    def addToSelected(self):
+        '''Adds the selected class to selected variable'''
+        selected_class = self.class_access.get()
+        if selected_class:
+            if selected_class not in self.selected:
+                self.selected.append(selected_class)
+                self.class_access.set("")  # Clear the combobox selection
+                self.updateDisplay()  # Update the text field display
+            else:
+                showErrorMessage("Class already selected")
+        else:
+            showErrorMessage("Cannot insert empty selection")
+
+
+    def updateDisplay(self):
+        '''Updated the display to show selected class'''
+        self.display.configure(state="normal")  # Enable the text field for editing
+        # self.display.delete("1.0", self.ctk.END)  # Clear the text field
+        self.display.insert(self.ctk.END, self.selected[-1] + ",")  # Insert each selected item
+        self.display.configure(state="disabled")  # Disable the text field to make it read-only
+
+    
+    def createTeacher(self):
+        '''Opens a new window to create new teahcer and saves to teacher.json'''
+        filename = 'teachers.json'
+        teacher_id = self.id_entry.get()
+        teacher_name = self.name_entry.get()
+
+        if teacher_id and teacher_name:
+            try:
+                with open(filename, 'r') as f:
+                    data = json.load(f)
+            except FileNotFoundError:
+                data = {"teachers": []}
+            
+            id_exists = any(ids["id"] == teacher_id for ids in data["teachers"])
+
+            if not id_exists:
+                new_teachers = {
+                    "Name": teacher_name,
+                    "id": teacher_id,
+                    "accessed class": self.selected,
+                }
+                data["teachers"].append(new_teachers)
+
+                with open("teachers.json", "w") as f:
+                    json.dump(data, f, indent=4)
+
+                self.window.destroy()
+                self.selected.clear()
+            else:
+                showErrorMessage("Teacher already exists!")
+                self.selected.clear()
     
     def saveClass(self):
         """
@@ -329,6 +480,24 @@ class AdminAccount:
             command=lambda: self.createStudent(class_name=c)
         )
         self.create_student.pack(side='bottom', pady=10)
+
+        # back button
+        # self.back_button = self.ctk.CTkButton(
+        #     self.window,
+        #     text="Back",
+        #     text_color="white",
+        #     font=self.button_font,
+        #     width=150,
+        #     height=35,
+        #     fg_color="red",  # Ensure visible color
+        #     command=backToAccountFrame
+        # )
+        # self.back_button.pack(side="bottom", pady=10, padx=10)
+
+        # @staticmethod
+        # def backToAccountFrame():
+        #     self.window.destroy()
+        #     self.main_frame()
 
         self.window.mainloop()
 

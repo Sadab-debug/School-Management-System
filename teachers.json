@@ -1,0 +1,29 @@
+{
+    "teachers": [
+        {
+            "Name": "Naruto",
+            "id": "334455",
+            "accessed class": [
+                "1",
+                "2",
+                "3"
+            ]
+        },
+        {
+            "Name": "Rafiq",
+            "id": "223344",
+            "accessed class": [
+                "4"
+            ]
+        },
+        {
+            "Name": "Rakib",
+            "id": "112233",
+            "accessed class": [
+                "2",
+                "3",
+                "4"
+            ]
+        }
+    ]
+}
