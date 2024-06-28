@@ -56,3 +56,5 @@ def uploadImage(self, filename):
 
         except json.JSONDecodeError:
             showErrorMessage("Error reading the admin_id.json file.")
+
+
