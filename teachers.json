@@ -1,29 +1,24 @@
 {
     "teachers": [
         {
-            "Name": "Naruto",
-            "id": "334455",
-            "accessed class": [
-                "1",
-                "2",
-                "3"
-            ]
-        },
-        {
-            "Name": "Rafiq",
+            "Name": "Minhaz",
             "id": "223344",
             "accessed class": [
-                "4"
-            ]
+                "2",
+                "4",
+                "5"
+            ],
+            "Salary": "19500",
+            "profile_pic": ""
         },
         {
             "Name": "Rakib",
-            "id": "112233",
+            "id": "334455",
             "accessed class": [
-                "2",
-                "3",
-                "4"
-            ]
+                "2"
+            ],
+            "Salary": "18500",
+            "profile_pic": "C:\\Users\\Asus\\Downloads\\3d6170a162644f29b5695d5bad02adbf.png"
         }
     ]
 }

@@ -1,5 +1,4 @@
-from functions import uploadImage, showCopyrightClaim, showErrorMessage
-from PIL import Image, ImageTk
+from functions import uploadImage, showCopyrightClaim, showErrorMessage, loadProfileImage
 import json
 from tkinter import messagebox, Toplevel
 
@@ -93,8 +92,9 @@ class AdminAccount:
         self.profile_picture_label = self.ctk.CTkLabel(self.profile_frame, text="No Image", font=('Arial', 20, 'bold'))
         self.profile_picture_label.place(relx=0.05, rely=0.01)
 
-        # Load profile image if exists
-        self.loadProfileImage()
+        # load existing image 
+        loadProfileImage(filename="admin_id.json", label=self.profile_picture_label)
+
 
         # Add button to upload photo
         self.upload_button = self.ctk.CTkButton(self.account_frame, font=self.button_font, text="Upload Photo", width=150, height=35, text_color='white', command=lambda: uploadImage(self, filename='admin_id.json'))
@@ -137,21 +137,21 @@ class AdminAccount:
 
 
     
-    def loadProfileImage(self):
-        """
-        Loads the profile image from 'admin_id.json' if it exists. Displays a placeholder if not found.
-        """
-        try:
-            with open('admin_id.json', 'r') as f:
-                data = json.load(f)
-                file_path = data.get('profile_pic')
-                if file_path:
-                    image = Image.open(file_path)
-                    image = image.resize((200, 200), Image.Resampling.LANCZOS)
-                    self.profile_image = ImageTk.PhotoImage(image)
-                    self.profile_picture_label.configure(image=self.profile_image, text="")
-        except (FileNotFoundError, json.JSONDecodeError):
-            print("admin_id.json not found or corrupted")
+    # def loadProfileImage(self, filename):
+    #     """
+    #     Loads the profile image from 'admin_id.json' if it exists. Displays a placeholder if not found.
+    #     """
+    #     try:
+    #         with open(filename, 'r') as f:
+    #             data = json.load(f)
+    #             file_path = data.get('profile_pic')
+    #             if file_path:
+    #                 image = Image.open(file_path)
+    #                 image = image.resize((200, 200), Image.Resampling.LANCZOS)
+    #                 self.profile_image = ImageTk.PhotoImage(image)
+    #                 self.profile_picture_label.configure(image=self.profile_image, text="")
+    #     except (FileNotFoundError, json.JSONDecodeError):
+    #         print(f"{filename} not found or corrupted")
 
 
 
@@ -260,6 +260,9 @@ class AdminAccount:
         self.label_selected_cls = self.ctk.CTkLabel(self.window, text="Selected:", font=self.button_font)
         self.label_selected_cls.place(relx=0.1, rely=0.4)
 
+        self.salary_label = self.ctk.CTkLabel(self.window, text="Salary", font=self.button_font)
+        self.salary_label.place(relx=0.1, rely=0.5)
+
         # entry
         self.name_entry = self.ctk.CTkEntry(self.window, width=200, corner_radius=4, placeholder_text="Enter name")
         self.name_entry.place(relx=0.3, rely=0.1)
@@ -268,6 +271,9 @@ class AdminAccount:
         self.id_entry = self.ctk.CTkEntry(self.window, width=200, corner_radius=4, placeholder_text="Enter ID no.")
         self.id_entry.place(relx=0.3, rely=0.2)
         # self.teacher_id = self.id_entry.get()
+
+        self.salary_entry = self.ctk.CTkEntry(self.window, width=200, corner_radius=4, placeholder_text="Enter Salary amount")
+        self.salary_entry.place(relx=0.3, rely=0.5)
 
         # available class 
         with open("classes.json", 'r') as f:
@@ -299,7 +305,7 @@ class AdminAccount:
             text_color="white",
             command=self.addToSelected
         )
-        self.add_btn.place(relx=0.65, rely=0.3)
+        self.add_btn.place(relx=0.7, rely=0.3)
 
         # Create a CTkTextbox widget (text field) for displaying selected options
         self.display = self.ctk.CTkTextbox(
@@ -316,7 +322,11 @@ class AdminAccount:
 
         # button
         self.create_button = self.ctk.CTkButton(self.window, text="Create teacher", text_color="white", width=50, height=35, font=self.button_font, command=self.createTeacher)
-        self.create_button.place(relx=0.35, rely=0.5)
+        self.create_button.place(relx=0.35, rely=0.7)
+
+        #upload profile img
+        self.profile_img = self.ctk.CTkEntry(self.window,  width=200, corner_radius=4, placeholder_text="pic path")
+        self.profile_img.place(relx=0.3, rely=0.6)
 
         self.window.mainloop()
 
@@ -349,6 +359,7 @@ class AdminAccount:
         filename = 'teachers.json'
         teacher_id = self.id_entry.get()
         teacher_name = self.name_entry.get()
+        teacher_salary = self.salary_entry.get()
 
         if teacher_id and teacher_name:
             try:
@@ -364,6 +375,7 @@ class AdminAccount:
                     "Name": teacher_name,
                     "id": teacher_id,
                     "accessed class": self.selected,
+                    "Salary": teacher_salary
                 }
                 data["teachers"].append(new_teachers)
 
@@ -426,7 +438,7 @@ class AdminAccount:
         # Display copyright claim
         showCopyrightClaim(self.ctk, self.window)
 
-        self.main_frame = self.ctk.CTkScrollableFrame(
+        self.display_frame = self.ctk.CTkScrollableFrame(
             self.window,
             width=1000,
             height=600,
@@ -434,7 +446,7 @@ class AdminAccount:
             border_color="white",
             orientation='vertical'
         )
-        self.main_frame.place(relx=0.5, rely=0.5, anchor='center')
+        self.display_frame.place(relx=0.5, rely=0.5, anchor='center')
 
         try:
             with open(filename, 'r') as f:
@@ -452,7 +464,7 @@ class AdminAccount:
             for student in class_data["students"]:
                 student_info = f"{student['Name']}      Roll: {student['Roll']}"
                 show_student = self.ctk.CTkButton(
-                    self.main_frame,
+                    self.display_frame,
                     width=950,
                     height=50,
                     text=student_info,
@@ -498,8 +510,13 @@ class AdminAccount:
         # def backToAccountFrame():
         #     self.window.destroy()
         #     self.main_frame()
-
+        # Bind the closing event to the on_closing function
+        self.window.protocol("WM_DELETE_WINDOW", self.onClosing)
         self.window.mainloop()
+
+    def onClosing(self):
+        self.display_frame.destroy()
+        self.window.destroy()
 
 
     def createStudent(self, class_name):
@@ -613,4 +630,7 @@ class AdminAccount:
             messagebox.showerror("Error", "classes.json not found.")
         except json.JSONDecodeError:
             messagebox.showerror("Error", "Error decoding JSON from classes.json.")
+
+
+
 

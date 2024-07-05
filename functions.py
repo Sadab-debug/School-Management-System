@@ -58,3 +58,25 @@ def uploadImage(self, filename):
             showErrorMessage("Error reading the admin_id.json file.")
 
 
+def loadProfileImage(filename, label):
+    """
+    Loads the profile image from a JSON file if it exists and sets it to a label.
+    
+    Args:
+        filename (str): The JSON file containing the profile image path.
+        label (tk.Label): The Tkinter label where the image will be displayed.
+    """
+    try:
+        with open(filename, 'r') as f:
+            data = json.load(f)
+            file_path = data.get('profile_pic')
+            if file_path:
+                image = Image.open(file_path)
+                image = image.resize((200, 200), Image.Resampling.LANCZOS)
+                profile_image = ImageTk.PhotoImage(image)
+                label.configure(image=profile_image, text="")
+                label.image = profile_image  # Keep a reference to avoid garbage collection
+    except (FileNotFoundError, json.JSONDecodeError):
+        print(f"{filename} not found or corrupted")
+
+
