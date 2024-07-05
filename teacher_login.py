@@ -1,4 +1,6 @@
-from functions import showCopyrightClaim
+from functions import showCopyrightClaim, showErrorMessage
+import json
+from teacher_account import TeacherAccount
 
 class TeacherLogin:
 
@@ -67,7 +69,8 @@ class TeacherLogin:
         self.id_entry = self.ctk.CTkEntry(
             self.login_frame,
             width=250,
-            font=self.button_font
+            font=self.button_font,
+            placeholder_text = "Enter ID"
         )
         self.id_entry.place(relx=0.4, rely=0.4)
 
@@ -93,7 +96,7 @@ class TeacherLogin:
             width=150,
             height=35,
             # fg_color="red",  # Ensure visible color
-            # command=self.back_to_main
+            command=self.authenticateTeacherLogin
         )
         self.login_button.place(relx=0.6, rely=0.6)
 
@@ -105,5 +108,40 @@ class TeacherLogin:
         '''
         self.login_frame.destroy()
         self.master.create_main_frame()
+
+    def openTeacherAccount(self, teacher_name, teacher_salary, accessed_class, teacher_id):
+        self.teacher_name = teacher_name
+        self.teacher_salary = teacher_salary
+        self.accessed_class = accessed_class
+        self.teacher_id = teacher_id
+
+        self.login_frame.destroy()
+        TeacherAccount(self.master, self.ctk, self.button_font, self.teacher_name, self.teacher_salary, self.accessed_class, self.teacher_id)
+
+
+    def authenticateTeacherLogin(self):
+        teacher_id = self.id_entry.get()
+
+        try:
+            with open("teachers.json", 'r') as f:
+                data = json.load(f)
+
+            # find teacher id 
+            teacher_data = next((teacher for teacher in data["teachers"] if teacher["id"] == teacher_id), None)
+            if not teacher_data:
+                showErrorMessage(f"ID {teacher_id} not found")
+                return
+            
+            # extract teahcer data 
+            teacher_name = teacher_data["Name"]
+            teacher_salary = teacher_data["Salary"]
+            accessed_class = teacher_data["accessed class"]
+
+            self.openTeacherAccount(teacher_name, teacher_salary, accessed_class, teacher_id)
+
+        except FileNotFoundError:
+            showErrorMessage("File doesn't exist")
+        except json.JSONDecodeError:
+            showErrorMessage("Error reading the json file")
 
 
