@@ -20,17 +20,19 @@ class StudentLogin:
         id_entry (CTkEntry): Entry widget for the student ID.
         back_button (CTkButton): Button to navigate back to the main menu.
         login_button (CTkButton): Button to log in as a student.
-        class_label(CTkLabel): Label for the class.
-        class_entry(CTkEntry): Entry for class name.
-        class_name: Retrives name of class from class_entry.
-        id_name: Retrives id number from id_entry.
+        class_label (CTkLabel): Label for the class.
+        class_entry (CTkEntry): Entry for class name.
+        class_name (str): Retrieves name of class from class_entry.
+        id_name (str): Retrieves ID number from id_entry.
 
     Methods:
         __init__(self, master, ctk, buttonFont): Initializes the StudentLogin class and sets up the GUI elements.
         back_to_main(self): Destroys the current login frame and returns to the main menu.
-        openStudentAccount(self): Destroys the current login frame and opens StudentAccount
-        authenticateStudentLogin(self): Authenticates student login by checking the id against stored data
-
+        openStudentAccount(self, student_name, student_id, student_roll, bangla_marks, english_marks, math_marks, 
+                           science_marks, life_and_livelihood_marks, digital_technology_marks, 
+                           history_and_social_science_marks, religion_marks, wellbeing_marks, arts_and_culture_marks, 
+                           guardian, age, phone, class_name): Destroys the current login frame and opens StudentAccount.
+        authenticateStudentLogin(self): Authenticates student login by checking the ID against stored data.
     """
 
 
@@ -136,9 +138,30 @@ class StudentLogin:
         self.master.create_main_frame()
 
     def openstudentAccount(self, student_name, student_id, student_roll, bangla_marks, english_marks, math_marks, science_marks, life_and_livelihood_marks, digital_technology_marks, history_and_social_science_marks, religion_marks, wellbeing_marks, arts_and_culture_marks, guardian, age, phone, class_name):
-        '''
+
+        """
         Opens the student account interface by destroying the current login frame and initializing the StudentAccount class.
-        '''
+
+        Args:
+            student_name (str): The name of the student.
+            student_id (str): The ID of the student.
+            student_roll (str): The roll number of the student.
+            bangla_marks (str): Marks in Bangla.
+            english_marks (str): Marks in English.
+            math_marks (str): Marks in Math.
+            science_marks (str): Marks in Science.
+            life_and_livelihood_marks (str): Marks in Life and Livelihood.
+            digital_technology_marks (str): Marks in Digital Technology.
+            history_and_social_science_marks (str): Marks in History and Social Science.
+            religion_marks (str): Marks in Religion.
+            wellbeing_marks (str): Marks in Wellbeing.
+            arts_and_culture_marks (str): Marks in Arts and Culture.
+            guardian (str): Guardian's name.
+            age (str): Age of the student.
+            phone (str): Phone number.
+            class_name (str): Name of the class.
+        """
+
         self.student_name = student_name
         self.student_id = student_id
         self.student_roll = student_roll
@@ -164,6 +187,9 @@ class StudentLogin:
 
 
     def authenticateStudentLogin(self):
+        """
+        Authenticates the student login by checking the entered ID and class against stored data.
+        """
         class_name = self.class_entry.get()
         id_num = self.id_entry.get()
 
